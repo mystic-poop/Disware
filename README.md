@@ -1,4 +1,4 @@
-# ⚠️ DANGEROUS DISCORD BOT - SYSTEM DESTRUCTION TOOL ⚠️
+# ⚠️ DISWARE - A TOOL THAT CAN GAIN ACCESS EVERY DEVICE FOR EDUCATIONAL PURPOSES ⚠️
 
 **This bot contains extremely malicious functionality that can permanently destroy Windows systems and perform illegal network attacks. Use at your own risk - the creator is not responsible for any damage caused.**
 
