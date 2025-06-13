@@ -16,7 +16,7 @@ This bot contains commands that:
 - 🔓 Expose your Discord token to malicious actors
 - 🚫 Get your Discord account banned
 
-###❓How to list commands
+## ❓How to list commands
   simply write the group where is your Disware bot is and type 
   ```bash
 !list-commands
