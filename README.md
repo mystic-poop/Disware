@@ -17,24 +17,15 @@ This bot contains commands that:
 - 🚫 Get your Discord account banned
 
 ## Command Reference
-
-### 🛑 Destructive Commands
-| Command | Parameters | Description | Danger Level |
-|---------|------------|-------------|--------------|
-| `!destroy` | None | Deletes critical Windows system files | 💀 MAXIMUM |
-| `!ddos` | `<target> <port> <duration>` | Launches DDoS attack | 💀 MAXIMUM |
-| `!reboot` | None | Immediately reboots system | 🔥 HIGH |
-| `!shutdown` | None | Immediately shuts down system | 🔥 HIGH |
-| `!bios` | None | Attempts to enter BIOS firmware | ⚠️ MEDIUM |
-
-### 🖥️ System Access Commands
-| Command | Parameters | Description | Risk Level |
-|---------|------------|-------------|------------|
-| `!cmd` | `<system_command>` | Executes system commands | 🔥 HIGH |
-| `!ping` | None | Checks bot latency | ✅ LOW |
+  simply write the group where is your Disware bot is and type 
+  ```bash
+!list-commands
+###❓How to list commands
+ ```
+simply write the group where is your Disware bot is and type 
 
 ## Installation Requirements
 1. **Python 3.8+**
 2. Required libraries:
    ```bash
-   pip install discord.py aiohttp
+   pip install discord.py aiohttp pyinstaller
